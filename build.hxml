@@ -1,0 +1,4 @@
+-lib utest
+-lib ufront-orm
+-main Main
+-x demo
