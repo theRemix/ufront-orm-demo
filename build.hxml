@@ -15,3 +15,4 @@
 -D server
 --php-lib php
 --php-front php_test.php
+-cmd php build/php_test.php
