@@ -1,5 +1,5 @@
 import utest.Assert;
-import sys.db.Connection;
+import sys.db.*;
 import ufront.db.*;
 
 class TestDemo
@@ -13,14 +13,19 @@ class TestDemo
 
   public function setup():Void
   {
-    var manager = Page.manager;
-    // var tableName = @:privateAccess manager.table_name;
-    // try TableCreate.create( Page.manager ) catch(e:Dynamic) {}
+    Manager.cnx = cnx;
+    recreateTable( Page.manager );
   }
   public function teardown():Void
   {
-    // var tableName = @:privateAccess Page.manager.table_name;
-    // try cnx.request( 'DROP TABLE $tableName' ) catch(e:Dynamic) {}
+    Manager.cnx = null;
+  }
+
+  private function recreateTable( manager:Manager<Dynamic> ):Void
+  {
+    var tableName = @:privateAccess manager.table_name;
+    try cnx.request( 'DROP TABLE $tableName' ) catch(e:Dynamic) {}
+    TableCreate.create( manager );
   }
 
   public function test_saving_page(){

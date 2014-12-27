@@ -1,4 +1,17 @@
 -lib utest
 -lib ufront-orm
 -main Main
+
+-D server
+
+--each
+
+## run neko now
 -x demo
+--next
+
+## php
+-php build
+-D server
+--php-lib php
+--php-front php_test.php
